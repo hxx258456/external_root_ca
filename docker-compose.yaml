@@ -30,8 +30,9 @@ services:
       - "17054:17054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
-      - ./testdata:/etc/hyperledger/fabric-ca-server/testdata
       - ./org1:/etc/hyperledger/fabric-ca-server
+      - ./testdata/ca-cert.pem:/etc/hyperledger/fabric-ca-server/ca-cert.pem
+      - ./testdata/ca-key.pem:/etc/hyperledger/fabric-ca-server/ca-key.pem
     container_name: ca_org1
     networks:
       - test

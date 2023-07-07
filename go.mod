@@ -1,3 +1,3 @@
 module external_root_ca
 
-go 1.20
+go 1.18

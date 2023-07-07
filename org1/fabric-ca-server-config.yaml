@@ -269,7 +269,7 @@ signing:
          usage:
            - cert sign
            - crl sign
-         expiry: 43800h
+         expiry: 8760h
          caconstraint:
            isca: true
            maxpathlen: 0
@@ -303,16 +303,16 @@ signing:
 csr:
    cn: ca.org1.example.com
    names:
-      - C: US
-        ST: "North Carolina"
-        L: "Durham"
+      - C: CN
+        ST: "北京"
+        L: "北京"
         O: org1.example.com
         OU:
    hosts:
      - localhost
      - org1.example.com
    ca:
-      expiry: 131400h
+      expiry: 8760h
       pathlength: 1
 
 #############################################################################
