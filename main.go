@@ -15,14 +15,13 @@ import (
 )
 
 func main() {
-	info, err := os.Stat("testdata/")
+	_, err := os.Stat("testdata")
 	if err != nil {
-		panic(err)
-	}
-	if !info.IsDir() {
-		err = os.Mkdir("testdata", 0755)
-		if err != nil {
-			panic(err)
+		if os.IsNotExist(err) {
+			err = os.Mkdir("testdata", 0755)
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
 
