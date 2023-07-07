@@ -15,15 +15,6 @@ import (
 )
 
 func main() {
-	_, err := os.Stat("testdata")
-	if err != nil {
-		if os.IsNotExist(err) {
-			err = os.Mkdir("testdata", 0755)
-			if err != nil {
-				panic(err)
-			}
-		}
-	}
 
 	privKey, _ := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 	var rootCsr = &x509.Certificate{
@@ -63,7 +54,7 @@ func main() {
 
 	pemData := pem.EncodeToMemory(certBlock)
 
-	if err = os.WriteFile("./testdata/ca-cert.pem", pemData, 0644); err != nil {
+	if err = os.WriteFile("./org1/ca-cert.pem", pemData, 0644); err != nil {
 		panic(err)
 	}
 
@@ -79,7 +70,7 @@ func main() {
 
 	keyData := pem.EncodeToMemory(keyBlock)
 
-	if err = os.WriteFile("./testdata/ca-key.pem", keyData, 0644); err != nil {
+	if err = os.WriteFile("./org1/ca-key.pem", keyData, 0644); err != nil {
 		panic(err)
 	}
 }

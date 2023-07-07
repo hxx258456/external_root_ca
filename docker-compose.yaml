@@ -23,16 +23,14 @@ services:
       - FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS=0.0.0.0:17054
       - FABRIC_CA_SERVER_SIGNING_PROFILES_CA_EXPIRY=8760h
       - FABRIC_CA_SERVER_CSR_CA_EXPIRY=8760h
-      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server/testdata/ca-key.pem
-      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server/testdata/ca-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server/ca-key.pem
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server/ca-cert.pem
     ports:
       - "7054:7054"
       - "17054:17054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
-      - ./org1:/etc/hyperledger/fabric-ca-server
-      - ./testdata/ca-cert.pem:/etc/hyperledger/fabric-ca-server/ca-cert.pem
-      - ./testdata/ca-key.pem:/etc/hyperledger/fabric-ca-server/ca-key.pem
+      - ./org1/ca-cert.pem:/etc/hyperledger/fabric-ca-server
     container_name: ca_org1
     networks:
       - test
